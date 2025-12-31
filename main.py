@@ -21,25 +21,12 @@ app = FastAPI(
 )
 
 
-class QuestionRequest(BaseModel):
-    query : str = Field(
-        ...,
-        title = "User Query",
-        description = "The question posed by the user regarding the PDF content.",
-        min_length = 5,
-        max_length = 1024,
-        examples="What is the main topic of the document?"
-    )
-    
-
-    class Config:
-        schema_extra = {
-            "example": {
-                "query": "What is the main topic of the document?"
-            }
-        }
-
-
+# ---------------------------------------------------------
+# STEP 3: STATE MANAGEMENT (The "Brain")
+# ---------------------------------------------------------
+# This variable lives here because main.py stays alive.
+# If we put this in rag.py, it would reset every time we call a function.
+vector_store = None
 
 
 if __name__ == "__main__":
