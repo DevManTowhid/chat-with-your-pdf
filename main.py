@@ -1,3 +1,10 @@
+from fastapi import FastAPI
+import uvicorn
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+
 
 load_dotenv()
 
@@ -6,7 +13,7 @@ if not os.getenv("HUGGINGFACEHUB_API_TOKEN"):
 
 
 app = FastAPI(
-    name : "Chat with your PDF",
+    title = "Chat with your PDF",
     description="An AI-powered PDF assistant that leverages Hugging Face models to answer questions based on the content of your PDF documents.",
     version="1.0.0",
 )
@@ -14,3 +21,4 @@ app = FastAPI(
 
 if __name__ == "__main__":
     print("Server is running....................................")
+    uvicorn.run("main:app", host = "127.0.0.1", port = 8000)
